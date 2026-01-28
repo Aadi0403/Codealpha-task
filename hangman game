@@ -1,0 +1,35 @@
+import random
+
+words = ["apple", "python", "chair", "river", "music"]
+
+word = random.choice(words)
+guessed = []
+wrong = 0
+limit = 6
+
+display = ["_"] * len(word)
+
+while wrong < limit and "_" in display:
+    print("\nWord:", " ".join(display))
+    print("Wrong guesses left:", limit - wrong)
+    
+    guess = input("Enter a letter: ").lower()
+    
+    if guess in guessed:
+        print("Already guessed")
+        continue
+    
+    guessed.append(guess)
+    
+    if guess in word:
+        for i in range(len(word)):
+            if word[i] == guess:
+                display[i] = guess
+    else:
+        wrong += 1
+        print("Wrong letter")
+
+if "_" not in display:
+    print("\nYou won! Word was:", word)
+else:
+    print("\nYou lost! Word was:", word)
